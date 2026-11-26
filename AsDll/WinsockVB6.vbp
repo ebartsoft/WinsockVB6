@@ -1,0 +1,57 @@
+Type=OleDll
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\..\WINDOWS\SysWow64\stdole2.tlb#OLE Automation
+Reference=*\G{35904C2D-5F6A-4D7F-924D-570B700F7D42}#1.0#40c#..\Win32API.tlb#EBArtSoft@ - Win32 API Declaration TypeLib For VB
+Class=Dummy; Dummy.cls
+Module=modWinsock2; ..\modWinsock2.bas
+Module=Common; Common.bas
+Startup="(None)"
+HelpFile=""
+Title="WinsockVB6_dll"
+ExeName32="WinsockVB6.dll"
+Command32=""
+Name="WinsockVB6"
+HelpContextID="0"
+CompatibleMode="1"
+MajorVer=1
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="EBArtSoft@"
+VersionFileDescription="Winsock Class Replacement"
+VersionLegalCopyright="© 2026 - EBArtSoft@"
+VersionLegalTrademarks="EBArtSoft@"
+VersionProductName="WinsockVB6"
+CondComp="DEVMODE = 0"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=-1
+CodeViewDebugInfo=0
+NoAliasing=-1
+BoundsCheck=-1
+OverflowCheck=-1
+FlPointCheck=-1
+FDIVCheck=-1
+UnroundedFP=-1
+StartMode=1
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+ThreadingModel=1
+DebugStartupOption=0
+
+[VBCompiler]
+LinkSwitches=/EXPORT:New_WinsockVB6
+
+[Compile Options]
+ExportOBJ=0
+ExportASM=0
+ExportCMD=0
+ReplCLSID=1
+ReplASMBL=0
+AddZLIBOB=0
+ReplOBJZP=0
+CompcWUPX=1
+ExcluMODS=0
+RemoveICO=0

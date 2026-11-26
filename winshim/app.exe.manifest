@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Rename this file to <host>.exe.manifest and put it next to the host EXE,
+  together with winshim.dll and WinsockVB6.dll.
+
+  This is the per-application route: Windows resolves the MSWINSCK CLSID to
+  winshim.dll for that process only. No registry changes, no admin rights,
+  and uninstalling is deleting three files.
+
+  Do not put the InprocServer32 path in here: the manifest replaces the
+  registry lookup for the listed CLSID.
+-->
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity type="win32" name="WinsockVB6.Winshim" version="1.0.0.0"/>
+  <file name="winshim.dll">
+    <comClass clsid="{248DD896-BB45-11CF-9ABC-0080C7E7B78D}"
+              threadingModel="Apartment"
+              progid="MSWinsock.Winsock.1"
+              description="Microsoft WinSock Control (WinsockVB6 replacement)"/>
+  </file>
+</assembly>

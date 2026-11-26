@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+; Machine-wide alias: point the MSWINSCK control CLSID at winshim.dll.
+; Prefer "regsvr32 winshim.dll" (DllRegisterServer writes the same keys and
+; fills in the real path). Use this file only if you need to see or edit the
+; values by hand: replace C:\path\to\winshim.dll below with the actual path.
+;
+; 32-bit view only. On 64-bit Windows these keys live under WOW6432Node and a
+; 32-bit .reg import lands there automatically.
+;
+; Undo: regsvr32 /u C:\Windows\SysWOW64\mswinsck.ocx   (re-registers the real control)
+;   or: delete the CLSID\InprocServer32 values added here and restore the
+;       original path (usually C:\Windows\SysWOW64\mswinsck.ocx).
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{248DD896-BB45-11CF-9ABC-0080C7E7B78D}\InprocServer32]
+@="C:\\path\\to\\winshim.dll"
+"ThreadingModel"="Apartment"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MSWinsock.Winsock]
+"CurVer"="MSWinsock.Winsock.1"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MSWinsock.Winsock\CLSID]
+@="{248DD896-BB45-11CF-9ABC-0080C7E7B78D}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MSWinsock.Winsock.1\CLSID]
+@="{248DD896-BB45-11CF-9ABC-0080C7E7B78D}"

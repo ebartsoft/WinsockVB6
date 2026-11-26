@@ -1,0 +1,216 @@
+// MSWinsockLib.idl
+//
+// Decompiled from MSWinsockLib.tlb, which was extracted from
+// mswinsck.ocx (Microsoft Winsock Control 6.0 SP6).
+//
+// Type library: MSWinsockLib
+// LIBID:        {248DD890-BB45-11CF-9ABC-0080C7E7B78D}
+// Version:      1.0
+// LCID:         0
+// SYSKIND:      SYS_WIN32
+//
+// The original type library helpfile path was:
+//   MSWNSK98.chm
+// The basename is used below for portability.
+//
+// Compile check: MIDL 7.00.0500
+// accepts this file and generates a 6-type TLB with the same type GUIDs and
+// 32 IMSWinsockControl / 7 DMSWinsockControlEvents functions.
+//
+// The original FREPLACEABLE type flags are omitted because MIDL rejects
+// [replaceable] on these interfaces. The extracted MSWinsockLib.tlb remains
+// the authoritative binary.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    uuid(248DD890-BB45-11CF-9ABC-0080C7E7B78D),
+    version(1.0),
+    helpstring("Microsoft Winsock Control 6.0 (SP6)"),
+    helpcontext(340000),
+    helpfile("MSWNSK98.chm"),
+    lcid(0x00000000)
+]
+library MSWinsockLib
+{
+    importlib("stdole2.tlb");
+
+    // Original enum GUID: {248DD895-BB45-11CF-9ABC-0080C7E7B78D}
+    typedef [uuid(248DD895-BB45-11CF-9ABC-0080C7E7B78D)] enum ProtocolConstants
+    {
+        sckTCPProtocol = 0,
+        sckUDPProtocol = 1
+    } ProtocolConstants;
+
+    // Original enum GUID: {248DD894-BB45-11CF-9ABC-0080C7E7B78D}
+    typedef [uuid(248DD894-BB45-11CF-9ABC-0080C7E7B78D)] enum StateConstants
+    {
+        sckClosed            = 0,
+        sckOpen              = 1,
+        sckListening         = 2,
+        sckConnectionPending = 3,
+        sckResolvingHost     = 4,
+        sckHostResolved      = 5,
+        sckConnecting        = 6,
+        sckConnected         = 7,
+        sckClosing           = 8,
+        sckError             = 9
+    } StateConstants;
+
+    // Original enum GUID: {248DD891-BB45-11CF-9ABC-0080C7E7B78D}
+    typedef [uuid(248DD891-BB45-11CF-9ABC-0080C7E7B78D)] enum ErrorConstants
+    {
+        sckInvalidPropertyValue   = 380,
+        sckGetNotSupported        = 394,
+        sckSetNotSupported        = 383,
+        sckOutOfMemory            = 7,
+        sckBadState               = 40006,
+        sckInvalidArg             = 40014,
+        sckSuccess                = 40017,
+        sckUnsupported            = 40018,
+        sckInvalidOp              = 40020,
+        sckOutOfRange             = 40021,
+        sckWrongProtocol          = 40026,
+        sckOpCanceled             = 10004,
+        sckInvalidArgument        = 10014,
+        sckWouldBlock             = 10035,
+        sckInProgress             = 10036,
+        sckAlreadyComplete        = 10037,
+        sckNotSocket              = 10038,
+        sckMsgTooBig              = 10040,
+        sckPortNotSupported       = 10043,
+        sckAddressInUse           = 10048,
+        sckAddressNotAvailable    = 10049,
+        sckNetworkSubsystemFailed = 10050,
+        sckNetworkUnreachable     = 10051,
+        sckNetReset               = 10052,
+        sckConnectAborted         = 10053,
+        sckConnectionReset        = 10054,
+        sckNoBufferSpace          = 10055,
+        sckAlreadyConnected       = 10056,
+        sckNotConnected           = 10057,
+        sckSocketShutdown         = 10058,
+        sckTimedout               = 10060,
+        sckConnectionRefused      = 10061,
+        sckNotInitialized         = 10093,
+        sckHostNotFound           = 11001,
+        sckHostNotFoundTryAgain   = 11002,
+        sckNonRecoverableError    = 11003,
+        sckNoData                 = 11004
+    } ErrorConstants;
+
+    [
+        uuid(248DD892-BB45-11CF-9ABC-0080C7E7B78D),
+        version(1.0),
+        hidden,
+        dual,
+        nonextensible,
+        oleautomation
+    ]
+    interface IMSWinsockControl : IDispatch
+    {
+            [id(3), propget] HRESULT Protocol([out, retval] ProtocolConstants* p);
+            [id(3), propput] HRESULT Protocol([in] ProtocolConstants rhs);
+
+            [id(4), propget] HRESULT RemoteHostIP([out, retval] BSTR* p);
+
+            [id(5), propget] HRESULT LocalHostName([out, retval] BSTR* p);
+
+            [id(6), propget] HRESULT LocalIP([out, retval] BSTR* p);
+
+            [id(7), propget] HRESULT SocketHandle([out, retval] long* p);
+
+            [id(0), propget, hidden] HRESULT _RemoteHost([out, retval] BSTR* p);
+            [id(0), propput, hidden] HRESULT _RemoteHost([in] BSTR rhs);
+
+            [id(1), propget] HRESULT RemotePort([out, retval] long* p);
+            [id(1), propput] HRESULT RemotePort([in] long rhs);
+
+            [id(2), propget] HRESULT LocalPort([out, retval] long* p);
+            [id(2), propput] HRESULT LocalPort([in] long rhs);
+
+            [id(8), propget] HRESULT State([out, retval] short* p);
+
+            [id(9), propget] HRESULT BytesReceived([out, retval] long* p);
+
+            [id(10), propget] HRESULT RemoteHost([out, retval] BSTR* p);
+            [id(10), propput] HRESULT RemoteHost([in] BSTR rhs);
+
+            [id(-552)] HRESULT AboutBox();
+
+            [id(64)] HRESULT Connect(
+                [in, optional] VARIANT RemoteHost,
+                [in, optional] VARIANT RemotePort);
+
+            [id(65)] HRESULT Listen();
+
+            [id(66)] HRESULT Accept([in] long requestID);
+
+            [id(67)] HRESULT SendData([in] VARIANT data);
+
+            [id(68)] HRESULT GetData(
+                [in, out] VARIANT* data,
+                [in, optional] VARIANT type,
+                [in, optional] VARIANT maxLen);
+
+            [id(69)] HRESULT PeekData(
+                [in, out] VARIANT* data,
+                [in, optional] VARIANT type,
+                [in, optional] VARIANT maxLen);
+
+            [id(70)] HRESULT Close();
+
+            [id(71)] HRESULT Bind(
+                [in, optional] VARIANT LocalPort,
+                [in, optional] VARIANT LocalIP);
+    };
+
+    [
+        uuid(248DD893-BB45-11CF-9ABC-0080C7E7B78D),
+        version(1.0),
+        hidden
+    ]
+    dispinterface DMSWinsockControlEvents
+    {
+        properties:
+
+        methods:
+            [id(0)] void DataArrival([in] long bytesTotal);
+
+            [id(1)] void Connect();
+
+            [id(2)] void ConnectionRequest([in] long requestID);
+
+            [id(3)] void SendProgress(
+                [in] long bytesSent,
+                [in] long bytesRemaining);
+
+            [id(4)] void SendComplete();
+
+            [id(5)] void Close();
+
+            [id(6)] void Error(
+                [in] short Number,
+                [in, out] BSTR* Description,
+                [in] long Scode,
+                [in] BSTR Source,
+                [in] BSTR HelpFile,
+                [in] long HelpContext,
+                [in, out] VARIANT_BOOL* CancelDisplay);
+    };
+
+    [
+        uuid(248DD896-BB45-11CF-9ABC-0080C7E7B78D),
+        version(1.0),
+        control,
+        helpstring("Microsoft Winsock Control 6.0 (SP6)")
+    ]
+    coclass Winsock
+    {
+        [default] interface IMSWinsockControl;
+        [default, source] dispinterface DMSWinsockControlEvents;
+    };
+};
+
+
